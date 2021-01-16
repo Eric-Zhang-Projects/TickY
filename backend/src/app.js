@@ -1,20 +1,8 @@
-const express = require('express')
-const app = express()
-const port = 5000
-const pool = require('./db')
+const app = require('express')();
+const routes = require('./routes');
+const { port } = require('./secrets.js');
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-
-app.get('/test', async (req, res) => {
-  try {
-    const getData = await pool.query("select * from event");
-    res.json(getData.rows);
-  } catch (err) {
-    console.log(err.message);
-  }
-})
+app.use('/', routes);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)

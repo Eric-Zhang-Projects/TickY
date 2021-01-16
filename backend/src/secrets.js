@@ -9,3 +9,4 @@ module.exports.db = {
     'database': data.db_database,
     'port': data.db_port
 }
+module.exports.port = 5000;

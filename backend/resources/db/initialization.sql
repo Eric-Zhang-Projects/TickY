@@ -24,8 +24,6 @@ CREATE TABLE event (
     date_time TIMESTAMP WITH TIME ZONE NOT NULL
 );
 
-INSERT INTO event (name, venue, description, date_time) VALUES ('Slander at MSG', 'Madison Square Garden', 'Slander at Madison Square Garden for his new tour', '2020-01-26 20:00:00');
-
 CREATE TABLE ticket (
     id SERIAL PRIMARY KEY,
     event_id integer REFERENCES event (id),
