@@ -10,3 +10,4 @@ module.exports.db = {
     'port': data.db_port
 }
 module.exports.port = 5000;
+module.exports.edm_train_api_key = data.edm_train_api_key;

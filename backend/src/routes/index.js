@@ -1,10 +1,9 @@
 const routes = require('express').Router();
-const events = require('./events');
+const eventRoutes = require('./eventRoutes');
+const homeRoutes = require('./homeRoutes');
 
-routes.get('/', (req, res) => {
-    res.json("home page");
-})
+routes.use('/', homeRoutes);
 
-routes.use('/api/events', events);
+routes.use('/events', eventRoutes);
 
 module.exports = routes;

@@ -18,11 +18,29 @@ CREATE TABLE detailed_info (
 CREATE TABLE event (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
-    artist VARCHAR(20) NOT NULL,
-    venue VARCHAR(100) NOT NULL,
+    venue_id integer REFERENCES venue (id),
     description VARCHAR(300),
     date_time TIMESTAMP WITH TIME ZONE NOT NULL
 );
+
+CREATE TABLE venue (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    address VARCHAR(300) NOT NULL,
+    location VARCHAR(50) NOT NULL,
+    state VARCHAR(15) NOT NULL
+)
+
+CREATE TABLE event_artst (
+    event_id integer REFERENCES event (id),
+    artist_id integer REFERENCES artist (id)
+)
+
+CREATE TABLE artist (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    image VARCHAR(200)
+)
 
 CREATE TABLE ticket (
     id SERIAL PRIMARY KEY,

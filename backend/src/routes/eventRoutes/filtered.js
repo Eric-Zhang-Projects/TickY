@@ -23,6 +23,6 @@ const byArtist = async (req, res) => {
 };
 
 module.exports = {
-    byId,
-    byArtist
+  byId,
+  byArtist,
 }
