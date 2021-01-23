@@ -15,32 +15,35 @@ CREATE TABLE detailed_info (
     user_id integer PRIMARY KEY REFERENCES user (id),
 )
 
-CREATE TABLE event (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    venue_id integer REFERENCES venue (id),
-    description VARCHAR(300),
-    date_time TIMESTAMP WITH TIME ZONE NOT NULL
-);
-
 CREATE TABLE venue (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     address VARCHAR(300) NOT NULL,
     location VARCHAR(50) NOT NULL,
     state VARCHAR(15) NOT NULL
-)
-
-CREATE TABLE event_artst (
-    event_id integer REFERENCES event (id),
-    artist_id integer REFERENCES artist (id)
-)
+);
 
 CREATE TABLE artist (
     id SERIAL PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     image VARCHAR(200)
-)
+);
+
+CREATE TABLE event (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    venue_id integer REFERENCES venue (id),
+    description VARCHAR(300),
+    date VARCHAR(10) NOT NULL
+    start_time TIMESTAMP WITH TIME ZONE,
+    end_time TIMESTAMP WITH TIME ZONE
+);
+
+CREATE TABLE event_artist (
+    id SERIAL PRIMARY KEY,
+    event_id integer REFERENCES event (id) ON DELETE CASCADE,
+    artist_id integer REFERENCES artist (id)
+);
 
 CREATE TABLE ticket (
     id SERIAL PRIMARY KEY,

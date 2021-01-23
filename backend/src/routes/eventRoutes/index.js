@@ -1,9 +1,7 @@
 const eventRoutes = require('express').Router();
-const all = require('./all');
-const filtered = require('./filtered');
+const events = require('./events');
 
-eventRoutes.get('/all', all);
-eventRoutes.get('/id/:id', filtered.byId);
-eventRoutes.get('/artist/:artist', filtered.byArtist);
+eventRoutes.get('/', events.all);
+eventRoutes.get('/:id', events.byId);
 
 module.exports = eventRoutes;
