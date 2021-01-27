@@ -11,3 +11,4 @@ module.exports.db = {
 }
 module.exports.port = 5000;
 module.exports.edm_train_api_key = data.edm_train_api_key;
+module.exports.session_secret = data.session_secret;

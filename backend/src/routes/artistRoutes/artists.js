@@ -15,8 +15,13 @@ const byId = async (req, res) => {
             if (row.artist_id !== null){
                 artist = {id: row.artist_id, name: row.artist_name, image: row.artist_image}
             } else {
-                var event = {id: row.event_id, name: row.event_name, date: row.date, venue_name: row.venue_name, location: row.location}
-                events.push(event);
+                events.push({
+                    id: row.event_id, 
+                    name: row.event_name, 
+                    date: row.date, 
+                    venue_name: row.venue_name, 
+                    location: row.location
+                });
             }
         })
         var response = {artist: artist, events: events};
