@@ -8,6 +8,8 @@ const routes = require('./routes');
 const adminRoutes = require('./adminRoutes');
 const { port, session_secret } = require('./secrets.js');
 
+require('./routes/user-routes/passportConfig')(passport);
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 

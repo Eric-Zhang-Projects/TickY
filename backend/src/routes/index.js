@@ -1,8 +1,8 @@
 const routes = require('express').Router();
-const homeRoutes = require('./homeRoutes');
-const userRoutes = require('./userRoutes');
-const eventRoutes = require('./eventRoutes');
-const artistRoutes = require('./artistRoutes');
+const homeRoutes = require('./home-routes');
+const userRoutes = require('./user-routes');
+const eventRoutes = require('./event-routes');
+const artistRoutes = require('./artist-routes');
 
 routes.use('/', homeRoutes);
 
