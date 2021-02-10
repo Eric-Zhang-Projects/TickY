@@ -3,6 +3,7 @@ const passport = require('passport');
 const flash = require('express-flash');
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const routes = require('./routes');
 const adminRoutes = require('./adminRoutes');
@@ -12,6 +13,8 @@ require('./routes/user-routes/passportConfig')(passport);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.use(cors());
 
 app.use(flash());
 app.use(session({

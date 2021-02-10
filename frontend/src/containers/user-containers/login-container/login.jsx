@@ -1,6 +1,7 @@
-import LoginForm from '../../../components/user-components/login-component/login';
+import LoginForm from '../../../components/user-components/login-component/loginForm';
 //import {useState} from 'react';
 import axios from 'axios';
+import { API_URL } from "../../../constants.json";
 
 const Login = () => {
 
@@ -8,23 +9,25 @@ const Login = () => {
 
     async function submitForm(props) {
         try {
-            console.log(props.email);
+            const url = `${API_URL}/login`;
+            console.log(url);
             const data = await axios({
                 method: 'post',
-                url: 'http://localhost:5000/api/login',
+                url: url,
                 data: {
-                    username: props.email,
+                    email: props.email,
                     password: props.password
                 }
             });
+            console.log(data);
         } catch (err) {
-            console.log(err);
+            console.log("Failing to call login api" + err);
         }
     }
     
-        return <div>
-            <LoginForm submitForm={submitForm}/>
-        </div>
+    return <div>
+        <LoginForm submitForm={submitForm}/>
+    </div>
         
 }
 

@@ -3,9 +3,23 @@ const passport = require('passport');
 //const { uuid } = require('uuidv4');
 
 const userDAO = require('./userDAO.js');
- const initialize = require('./passportConfig.js');
+const initialize = require('./passportConfig.js');
 
  initialize(passport);
+
+ const login = (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
+        if (err) throw err;
+        if (!user) res.send("No user exists");
+        else {
+            req.logIn(user, err => {
+                if (err) throw err;
+                console.log(req.user);
+                res.send("Success!");
+            });
+        }
+    })(req, res, next);
+}
 
 const register = async(req, res) => {
     console.log("Register User");
@@ -55,6 +69,7 @@ function checkNotAuthenticated(req, res, next) {
 }
 
 module.exports = {
+    login,
     register,
     logout
 }
