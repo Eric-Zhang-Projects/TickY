@@ -27,7 +27,7 @@ GET / (return list of soon events)
 GET /search?query= (artist or event name)
 
 Event routes
-GET /events
+GET /events (may not have afrontend)
 GET /events/{id} (shows auctions)
 
 artist routes

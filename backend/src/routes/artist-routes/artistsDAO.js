@@ -9,6 +9,7 @@ async function getAllArtists() {
     }
 };
 
+//Gets an Artist + all events
 async function getArtistDetailsById(artistId) {
     try {
         const query = 
