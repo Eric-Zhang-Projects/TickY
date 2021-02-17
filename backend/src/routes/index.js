@@ -14,29 +14,42 @@ routes.use('/artists', artistRoutes);
 
 /*
 
+Create endpoints to sell a ticket -> create new ticket, auction
+create bid for an auction
+
 User routes
-POST /login
-POST /register
+[x] POST /login
+[x] POST /register
+POST /sell
 GET /logout
 GET /account
 POST /updateAccount
 GET /forgotpassword
 
 Home routes
-GET / (return list of soon events)
-GET /search?query= (artist or event name)
+[x] GET / (return list of soon events)
+[] GET /search?query= (artist or event name and show results)
+    -> /events/{id}
+    -> /artists/{id}
 
 Event routes
-GET /events (may not have afrontend)
-GET /events/{id} (shows auctions)
+[x] GET /events (may not have afrontend)
+[x] GET /events/{id} (shows event details + auctions)
+    -> /artists/{id}
+    -> /auctions/{id}
 
 artist routes
-GET /artists
-GET /artists/{id} (shows events)
+[x]GET /artists
+[x]GET /artists/{id} (shows events)
+    -> /events/{id}
 
 auction routes
 GET /auctions shows all auctions (ordered by recent)
 GET /auctions/{id} shows one auction
+    -> /events/{id}
+    -> /bid
+POST /bid places bid
+
 
 
 */
