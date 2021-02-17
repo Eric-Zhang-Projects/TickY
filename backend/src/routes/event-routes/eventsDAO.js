@@ -1,4 +1,3 @@
-const { Events } = require('pg');
 const pool = require('../../db')
 
 async function getAllEvents() {

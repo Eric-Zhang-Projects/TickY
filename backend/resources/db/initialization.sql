@@ -46,31 +46,38 @@ CREATE TABLE event_artist (
 
 CREATE TABLE ticket (
     id SERIAL PRIMARY KEY,
-    event_id integer REFERENCES event (id),
-    owner_id integer REFERENCES user (id),
-    auction_id integer REFERENCES auction (id),
-    seating_area VARCHAR(10) NOT NULL
-    data text,
+    seating_area VARCHAR(10) NOT NULL,
+    data text
+)
+    --event_id integer REFERENCES event (id),
+    --owner_id integer REFERENCES users (id),
+    --auction_id integer REFERENCES auction (id),
+
+CREATE TABLE user_ticket_event_auction (
+    user_id integer REFERENCES users (id) ON DELETE CASCADE,
+    ticket_id integer REFERENCES ticket (id) ON DELETE CASCADE,
+    event_id integer REFERENCES event (id) ON DELETE CASCADE,
+    auction_id integer REFERENCES auction (id) ON DELETE CASCADE
 )
 
 CREATE TABLE auction (
     id SERIAL PRIMARY KEY,
-    ticket_id integer REFERENCES ticket (id),
-    seller_id integer REFERENCES ticket (owner_id),
-    winning_bid_id integer REFERENCES bid (id),
+    winning_bid_id integer,
     name VARCHAR(100) NOT NULL,
     description VARCHAR(300),
     is_closed boolean NOT NULL,
     expiration_date DATE NOT NULL,
-    ask_price money NOT_NULL,
-    ticket_quantity integer NOT_NULL
+    ask_price money NOT NULL,
+    ticket_quantity integer NOT NULL
 )
+    --ticket_id integer REFERENCES ticket (id),
+    --seller_id integer REFERENCES ticket (owner_id),
 
 CREATE TABLE bid (
     id SERIAL PRIMARY KEY,
     auction_id integer REFERENCES auction (id),
-    bidder_id integer REFERENCES user (id) ,
-    offer money NOT_NULL,
-    date_placed TIMESTAMP NOT_NULL,
-    is_active boolean NOT_NULL
+    bidder_id integer REFERENCES users (id) ,
+    offer money NOT NULL,
+    date_placed TIMESTAMP WITH TIME ZONE NOT NULL,
+    is_active boolean NOT NULL
 )
