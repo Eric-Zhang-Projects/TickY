@@ -45,9 +45,10 @@ CREATE TABLE event_artist (
 );
 
 CREATE TABLE ticket (
-    id SERIAL PRIMARY KEY,
+    id VARCHAR(36) PRIMARY KEY,
     seating_area VARCHAR(10) NOT NULL,
-    data text
+    data text,
+    picture text
 )
     --event_id integer REFERENCES event (id),
     --owner_id integer REFERENCES users (id),
@@ -55,13 +56,13 @@ CREATE TABLE ticket (
 
 CREATE TABLE user_ticket_event_auction (
     user_id integer REFERENCES users (id) ON DELETE CASCADE,
-    ticket_id integer REFERENCES ticket (id) ON DELETE CASCADE,
+    ticket_id VARCHAR(36) REFERENCES ticket (id) ON DELETE CASCADE,
     event_id integer REFERENCES event (id) ON DELETE CASCADE,
-    auction_id integer REFERENCES auction (id) ON DELETE CASCADE
+    auction_id VARCHAR(36) REFERENCES auction (id) ON DELETE CASCADE
 )
 
 CREATE TABLE auction (
-    id SERIAL PRIMARY KEY,
+    id VARCHAR(36) PRIMARY KEY,
     winning_bid_id integer,
     name VARCHAR(100) NOT NULL,
     description VARCHAR(300),
@@ -75,7 +76,7 @@ CREATE TABLE auction (
 
 CREATE TABLE bid (
     id SERIAL PRIMARY KEY,
-    auction_id integer REFERENCES auction (id),
+    auction_id VARCHAR(36) REFERENCES auction (id),
     bidder_id integer REFERENCES users (id) ,
     offer money NOT NULL,
     date_placed TIMESTAMP WITH TIME ZONE NOT NULL,

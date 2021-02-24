@@ -7,6 +7,10 @@ const initialize = require('./passportConfig.js');
 
  initialize(passport);
 
+ /*
+Login, Register, Logout, Forgot password
+ */
+
  const login = (req, res, next) => {
     passport.authenticate('local', (err, user, info) => {
         if (err) throw err;

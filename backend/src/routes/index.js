@@ -3,6 +3,7 @@ const homeRoutes = require('./home-routes');
 const userRoutes = require('./user-routes');
 const eventRoutes = require('./event-routes');
 const artistRoutes = require('./artist-routes');
+const auctionRoutes = require('./auction-routes');
 
 routes.use('/', homeRoutes);
 
@@ -12,6 +13,8 @@ routes.use('/events', eventRoutes);
 
 routes.use('/artists', artistRoutes);
 
+routes.use('/auctions', auctionRoutes);
+
 /*
 
 Create endpoints to sell a ticket -> create new ticket, auction
@@ -20,7 +23,7 @@ create bid for an auction
 User routes
 [x] POST /login
 [x] POST /register
-POST /sell
+[x] POST /sell
 GET /logout
 GET /account
 POST /updateAccount
@@ -44,7 +47,7 @@ artist routes
     -> /events/{id}
 
 auction routes
-GET /auctions shows all auctions (ordered by recent)
+[x]GET /auctions shows all auctions (ordered by recent)
 GET /auctions/{id} shows one auction
     -> /events/{id}
     -> /bid
