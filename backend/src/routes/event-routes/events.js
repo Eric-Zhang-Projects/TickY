@@ -1,4 +1,4 @@
-const eventsDAO = require('./eventsDAO')
+const eventsDAO = require('./events-dao')
 
 const all = async (req, res) => {
   try {
@@ -11,28 +11,16 @@ const all = async (req, res) => {
 
 const byId = async (req, res) => {
   try {
-    let eventData = await eventsDAO.getEventById(req.params.id);
-    var response = {};
-    eventData.forEach(row => {
-      if (response.event_id === undefined){
-        var lineup = [];
-        lineup.push(row.artist_name);
-        response = {
-          event_id: row.event_id,
-          event_name: row.event_name,
-          description: row.description,
-          date: row.date,
-          start_time: row.start_time,
-          end_time: row.end_time,
-          venue_name: row.venue_name,
-          venue_address: row.venue_address,
-          venue_location: row.venue_location,
-          lineup: lineup
-        }
-      } else {
-        response.lineup.push(row.artist_name);
-      }
-    });
+    let eventVenueData = await eventsDAO.getEventVenueDetailsById(req.params.id);
+    let artistData = await eventsDAO.getEventArtistsById(req.params.id);
+    let auctionData = await eventsDAO.getEventAcutionsById(req.params.id);
+    var response = {...eventVenueData, lineup: [], auctions: []};
+    artistData.forEach(artist => {
+      response.lineup.push({...artist});
+    })
+    auctionData.forEach(auction => {
+      response.auctions.push({...auction});
+    })
     res.json(response);
   } catch (err){
     console.log(err);

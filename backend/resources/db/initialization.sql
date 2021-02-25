@@ -58,7 +58,8 @@ CREATE TABLE user_ticket_event_auction (
     user_id integer REFERENCES users (id) ON DELETE CASCADE,
     ticket_id VARCHAR(36) REFERENCES ticket (id) ON DELETE CASCADE,
     event_id integer REFERENCES event (id) ON DELETE CASCADE,
-    auction_id VARCHAR(36) REFERENCES auction (id) ON DELETE CASCADE
+    auction_id VARCHAR(36) REFERENCES auction (id) ON DELETE CASCADE,
+    PRIMARY KEY (user_id, ticket_id, event_id, auction_id)
 )
 
 CREATE TABLE auction (

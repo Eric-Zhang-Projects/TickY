@@ -51,9 +51,7 @@ auction routes
 GET /auctions/{id} shows one auction
     -> /events/{id}
     -> /bid
-POST /bid places bid
-
-
+POST /auctions/{id}/bid places bid
 
 */
 

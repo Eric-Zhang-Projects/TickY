@@ -18,8 +18,12 @@ const byId = async (req, res) => {
     }
 }
 
+const placeBid = async (req, res) => {
+
+}
+
 module.exports = {
     all,
     byId,
-
+    placeBid
 }
