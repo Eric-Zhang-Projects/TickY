@@ -24,6 +24,7 @@ User routes
 [x] POST /login
 [x] POST /register
 [x] POST /sell
+[x] POST /sell/new (adds card info + seller name + rating), add # of transactions
 GET /logout
 GET /account
 POST /updateAccount
@@ -48,8 +49,8 @@ artist routes
 
 auction routes
 [x]GET /auctions shows all auctions (ordered by recent)
-GET /auctions/{id} shows one auction
-    -> /events/{id}
+[x] GET /auctions/{id} shows one auction
+    -> /events/{id} (?)
     -> /bid
 POST /auctions/{id}/bid places bid
 

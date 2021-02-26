@@ -1,8 +1,8 @@
 const bcrypt = require('bcrypt')
 const passport = require('passport');
-//const { uuid } = require('uuidv4');
+const uuid = require('uuid');
 
-const userDAO = require('./userDAO.js');
+const userDAO = require('./user-dao.js');
 const initialize = require('./passportConfig.js');
 
  initialize(passport);
@@ -31,6 +31,7 @@ const register = async(req, res) => {
         //Creates hashedpassword with salt rounds = 10
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
         const user = {
+            id: uuid.v4(),
             email: req.body.email,
             password: hashedPassword
         }

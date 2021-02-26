@@ -1,7 +1,7 @@
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt')
 
-const userDAO = require('./userDAO.js');
+const userDAO = require('./user-dao.js');
 
 function initialize(passport) {
     passport.use(new LocalStrategy({usernameField: 'email'}, async (username, password, done) => {

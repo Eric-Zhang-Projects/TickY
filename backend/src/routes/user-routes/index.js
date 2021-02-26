@@ -11,5 +11,6 @@ userRoutes.post('/register', user.register);
 userRoutes.delete('/logout', user.logout);
 
 userRoutes.post('/sell', accountServices.sell);
+userRoutes.post('/sell/onboard', accountServices.onboard);
 
 module.exports = userRoutes;

@@ -64,6 +64,28 @@ const sell = async (req, res) => {
    
 }
 
+const onboard = async(req, res) => {
+    console.log("Register new Seller");
+    try {
+        let seller = {
+            id: req.body.id,
+            name: req.body.name,
+            customer_id: req.body.customer_id
+        }
+        const onboard = await dao.onboardSeller(seller);
+        if (onboard !== 0 && onboard.name === undefined){
+            console.log("Successfully onboarded new seller");
+            res.json("Success");
+        } else {
+            console.log("Failed to onboard new seller, updated " + onboard + " rows");
+            res.json("Error");
+        }
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 module.exports = {
-    sell
+    sell,
+    onboard
 }

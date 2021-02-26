@@ -12,7 +12,12 @@ const all = async (req, res) => {
 const byId = async (req, res) => {
     try {
         const auction = await auctionDAO.getAuctionById(req.params.id);
-        res.json(auction);
+        const bids = await auctionDAO.getBidsByAuctionId(req.params.id);
+        var response = {...auction, bids: []};
+        bids.forEach(bid => {
+            response.bids.push(bid);
+        })
+        res.json(response);
     } catch (err){
         console.log(err + " error getting auction by Id");
     }

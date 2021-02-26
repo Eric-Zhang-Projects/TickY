@@ -1,8 +1,8 @@
 const pool = require('../../db');
 
 async function registerUser(user) {
-    const query = "INSERT INTO users (email, password) VALUES ($1, $2)";
-    const values = [user.email, user.password];
+    const query = "INSERT INTO users (id, email, password) VALUES ($1, $2, $3)";
+    const values = [user.id, user.email, user.password];
     try {
         const data = await pool.query(query, values);
         return data.rows;

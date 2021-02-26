@@ -24,6 +24,27 @@ async function uploadTicket(ticket, auction, relation) {
     }
 }
 
+async function onboardSeller(seller){
+    try {
+        const query = 
+        'UPDATE users SET\n' +
+        'name = $1,\n' +
+        'seller_rating = 5.0,\n' +
+        'customer_id = $2\n' +
+        'WHERE id = $3';
+        await pool.query('BEGIN');
+        const values = [seller.name, seller.customer_id, seller.id];
+        const onboardSeller = await pool.query(query, values);
+        await pool.query('COMMIT');
+        return onboardSeller.rowCount;
+    } catch (err) {
+        await pool.query('ROLLBACK');
+        console.log(err + " failed to onboard new seller");
+        return err;
+    }
+}
+
 module.exports = {
     uploadTicket,
+    onboardSeller
 }

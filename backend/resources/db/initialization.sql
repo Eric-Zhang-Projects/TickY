@@ -2,12 +2,9 @@ CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     email VARCHAR(30) NOT NULL UNIQUE,
     password VARCHAR(60) NOT NULL,
-    payment_info_id integer UNIQUE,
-    detailed_info_id integer UNIQUE
-)
-
-CREATE TABLE payment_info (
-    user_id integer PRIMARY KEY REFERENCES user (id),
+    name VARHCAR(30),
+    seller_rating REAL,
+    customer_id VARCHAR(18)
 )
 
 CREATE TABLE detailed_info (
@@ -55,7 +52,7 @@ CREATE TABLE ticket (
     --auction_id integer REFERENCES auction (id),
 
 CREATE TABLE user_ticket_event_auction (
-    user_id integer REFERENCES users (id) ON DELETE CASCADE,
+    user_id VARCHAR(36) REFERENCES users (id) ON DELETE CASCADE,
     ticket_id VARCHAR(36) REFERENCES ticket (id) ON DELETE CASCADE,
     event_id integer REFERENCES event (id) ON DELETE CASCADE,
     auction_id VARCHAR(36) REFERENCES auction (id) ON DELETE CASCADE,
@@ -76,9 +73,9 @@ CREATE TABLE auction (
     --seller_id integer REFERENCES ticket (owner_id),
 
 CREATE TABLE bid (
-    id SERIAL PRIMARY KEY,
+    id VARCHAR(36) PRIMARY KEY,
     auction_id VARCHAR(36) REFERENCES auction (id),
-    bidder_id integer REFERENCES users (id) ,
+    bidder_id VARCHAR(36) REFERENCES users (id) ,
     offer money NOT NULL,
     date_placed TIMESTAMP WITH TIME ZONE NOT NULL,
     is_active boolean NOT NULL
