@@ -18,6 +18,8 @@ Login, Register, Logout, Forgot password
         else {
             req.logIn(user, err => {
                 if (err) throw err;
+                req.session.userId = 'test';
+                req.session.secondVar = 5;
                 console.log(req.user);
                 res.send("Success!");
             });

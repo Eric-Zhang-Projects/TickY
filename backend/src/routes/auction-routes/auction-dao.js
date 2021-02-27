@@ -30,9 +30,18 @@ async function getAuctionById(id) {
       }
 }
 
-async function getBidsByAuctionId(id) {
-  const query = 'select offer, date_placed from bid where is_active is true and auction_id = $1 order by offer desc limit 5';
-  const values = [id];
+async function getBidsByAuctionId(auction_id, bidder_id) {
+  //Returns top 3 bids for an auction, or if current user has an auction shows that auction with user id returned
+  const query = 
+  'select offer, date_placed, id from bid\n' +
+  'where bidder_id = $2 and \n' +
+  'is_active is true and auction_id = $1\n' +
+  'union\n' +
+  '(select offer, date_placed, null id from bid\n' +
+  'where bidder_id != $2 and\n' +
+  'is_active is true and auction_id = $1\n' +
+  'order by offer desc limit 3)'
+  const values = [auction_id, bidder_id];
   try {
       const bids = await pool.query(query, values);
       return bids.rows;
@@ -41,8 +50,20 @@ async function getBidsByAuctionId(id) {
     }
 }
 
+async function placeBid(bid){
+  const query = 'INSERT INTO bid (id, auction_id, bidder_id, offer, date_placed, is_active) VALUES ($1, $2, $3, $4, $5, $6)';
+  const values = Object.values(bid);
+  try {
+    const bid = await pool.query(query, values);
+    return bid.rows;
+  } catch (err) {
+    console.log(err.message);
+  }
+}
+
 module.exports = {
     getAllAuctions,
     getAuctionById,
-    getBidsByAuctionId
+    getBidsByAuctionId,
+    placeBid
 }

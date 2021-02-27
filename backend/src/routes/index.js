@@ -16,6 +16,7 @@ routes.use('/artists', artistRoutes);
 routes.use('/auctions', auctionRoutes);
 
 /*
+const {email, password } = req;
 
 Create endpoints to sell a ticket -> create new ticket, auction
 create bid for an auction
@@ -27,6 +28,12 @@ User routes
 [x] POST /sell/new (adds card info + seller name + rating), add # of transactions
 GET /logout
 GET /account
+    - Seller:
+        a. tickets + auctions
+    - cusomter:
+        a. transaction history / owned tickets
+        b. most recent bid only for any auctions
+            - retract bid
 POST /updateAccount
 GET /forgotpassword
 
