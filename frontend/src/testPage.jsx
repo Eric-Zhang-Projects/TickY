@@ -1,14 +1,10 @@
-import Event from '../../components/home-components/Event';
-import {useState, useEffect} from 'react';
 import axios from 'axios';
+import {useState} from 'react';
 import { Redirect } from 'react-router';
 
-const Home = () => {
+const TestPage = () => {
 
-  //  const [eventData, setEventData] = useEffect([]);
-    const [event, useEvent] = useState([]);
-
-    const [auth, setAuth] = useState(false);
+    const [loggedOut, setLoggedOut] = useState(false);
 
     async function logout (){
         try {
@@ -20,7 +16,7 @@ const Home = () => {
             });
             console.log(data);
             if (data.data === 'logged out'){
-                setAuth(true);
+                setLoggedOut(true);
             }
         } catch (err) {
             console.log("Failing to call login api" + err);
@@ -28,19 +24,18 @@ const Home = () => {
         
     }
 
-    if (auth){
+    if (loggedOut){
         return <Redirect push to = {{
             pathname: '/',
-            state: {data: "false"}
+            state: {data: "test"}
         }} />
     }
 
-    return (<div>Home page - log in status - {auth}
+    return (<div>AYEEE
         <div>
         <button type="logout" onClick={logout}>LogOut</button>
         </div>
     </div>);
-        
 }
 
-export default Home;
+export default TestPage;

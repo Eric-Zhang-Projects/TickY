@@ -28,6 +28,7 @@ function initialize(passport) {
     ));
     passport.serializeUser((user, done) => done(null, user.id));
     passport.deserializeUser((id, done) => {
+        console.log("Deserializing User");
         return done(null, userDAO.getUserById(id));
     });
 }

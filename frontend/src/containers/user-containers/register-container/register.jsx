@@ -1,7 +1,6 @@
 import RegisterForm from '../../../components/user-components/register-component/registerForm';
 //import {useState} from 'react';
 import axios from 'axios';
-import { API_URL } from "../../../constants.json";
 
 const Register = () => {
 
@@ -9,7 +8,7 @@ const Register = () => {
 
     async function submitForm(props) {
         try {
-            const url = `${API_URL}/register`;
+            const url = 'api/register';
             console.log(url);
             const data = await axios({
                 method: 'post',

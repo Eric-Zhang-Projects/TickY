@@ -18,10 +18,11 @@ Login, Register, Logout, Forgot password
         else {
             req.logIn(user, err => {
                 if (err) throw err;
-                req.session.userId = 'test';
-                req.session.secondVar = 5;
-                console.log(req.user);
-                res.send("Success!");
+                req.session.customerId = req.user.customer_id;
+                console.log("New Session created: " + req.session.id + " for user id: " + req.session.passport.user);
+                //console.log(req.user);
+                res.send("Logged In");
+                //res.redirect('/api/events');
             });
         }
     })(req, res, next);
@@ -29,6 +30,11 @@ Login, Register, Logout, Forgot password
 
 const register = async(req, res) => {
     console.log("Register User");
+    if (req.session.passport === undefined){
+    console.log("no passport session");
+    } else {
+        console.log(req.session.id + " " + req.session.passport.user);
+    }
     try {
         //Creates hashedpassword with salt rounds = 10
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -55,8 +61,9 @@ const register = async(req, res) => {
 
 const logout = async (req, res) => {
     console.log("Logout");
-    req.logOut();
-    res.redirect('/login');
+    req.logout();
+    res.json("logged out");
+    //res.redirect('/login');
 }
 
 function checkAuthenticated(req, res, next) {
