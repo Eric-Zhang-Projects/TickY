@@ -5,7 +5,22 @@ import { Redirect } from 'react-router';
 
 const Home = () => {
 
-  //  const [eventData, setEventData] = useEffect([]);
+    const [home, setHome] = useState([]);
+
+    useEffect(() => {
+        async function getHomeEvents(){
+            const url = '/api/';
+            let response = await axios({
+                method: 'get',
+                url: url,
+            });
+            setHome(response.data);
+            console.log(response);
+        }
+        getHomeEvents();
+        console.log(home);
+    }, [])
+
     const [event, useEvent] = useState([]);
 
     const [auth, setAuth] = useState(false);
@@ -14,12 +29,12 @@ const Home = () => {
         try {
             const url = '/api/logout';
             console.log(url);
-            const data = await axios({
+            const response = await axios({
                 method: 'delete',
                 url: url,
             });
-            console.log(data);
-            if (data.data === 'logged out'){
+            console.log(response);
+            if (response.data === 'logged out'){
                 setAuth(true);
             }
         } catch (err) {
@@ -37,6 +52,7 @@ const Home = () => {
 
     return (<div>Home page - log in status - {auth}
         <div>
+            <div></div>
         <button type="logout" onClick={logout}>LogOut</button>
         </div>
     </div>);

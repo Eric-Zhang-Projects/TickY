@@ -61,8 +61,18 @@ const register = async(req, res) => {
 
 const logout = async (req, res) => {
     console.log("Logout");
+    //store.destroy(req.session.id);
+    console.log(req.session.passport.user);
     req.logout();
+    console.log(req.session.passport.user);
+    req.session.destroy((err)=>{
+        if (err){
+            return next(err);
+        }
+        res.end();
+    })
     res.json("logged out");
+
     //res.redirect('/login');
 }
 
