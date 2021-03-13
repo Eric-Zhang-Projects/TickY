@@ -22,7 +22,7 @@ Login, Register, Logout, Forgot password
                 console.log("New Session created: " + req.session.id + " for user id: " + req.session.passport.user);
                 //console.log(req.user);
                 res.send("Logged In");
-                //res.redirect('/api/events');
+                //res.redirect('/api/home');
             });
         }
     })(req, res, next);
@@ -62,9 +62,9 @@ const register = async(req, res) => {
 const logout = async (req, res) => {
     console.log("Logout");
     //store.destroy(req.session.id);
-    console.log(req.session.passport.user);
+    //console.log(req.session.passport.user);
     req.logout();
-    console.log(req.session.passport.user);
+    //console.log(req.session.passport.user);
     req.session.destroy((err)=>{
         if (err){
             return next(err);

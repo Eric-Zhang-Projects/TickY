@@ -1,13 +1,21 @@
-import Event from '../../components/home-components/Event';
-import {useState, useEffect} from 'react';
+//import Event from '../../components/home-components/Event';
+import {useState, useEffect, useContext} from 'react';
+import { UserContext } from '../../UserContext.js';
 import axios from 'axios';
 import { Redirect } from 'react-router';
 
 const Home = () => {
 
+    const {user, setUser} = useContext(UserContext);
+
+    const [nav, setNav ] = useState('/');
+
+    //const [auth, setAuth] = useState(false);
+
     const [home, setHome] = useState([]);
 
     useEffect(() => {
+        console.log(user);
         async function getHomeEvents(){
             const url = '/api/';
             let response = await axios({
@@ -16,14 +24,13 @@ const Home = () => {
             });
             setHome(response.data);
             console.log(response);
-        }
+        };
         getHomeEvents();
         console.log(home);
     }, [])
 
-    const [event, useEvent] = useState([]);
+   // const [event, useEvent] = useState([]);
 
-    const [auth, setAuth] = useState(false);
 
     async function logout (){
         try {
@@ -35,27 +42,39 @@ const Home = () => {
             });
             console.log(response);
             if (response.data === 'logged out'){
-                setAuth(true);
+                setUser(null);
             }
         } catch (err) {
             console.log("Failing to call login api" + err);
+            setUser("User failed to log out, logging out anyway");
         }
         
     }
 
-    if (auth){
-        return <Redirect push to = {{
-            pathname: '/',
-            state: {data: "false"}
+    if (nav === '/login'){
+    return <Redirect push to = {{
+            pathname: '/login',
+            state: {data: "test"}
         }} />
     }
 
-    return (<div>Home page - log in status - {auth}
+    return (
+    <div>
+    {user ? 
         <div>
-            <div></div>
-        <button type="logout" onClick={logout}>LogOut</button>
+        Home page - current user: {user}
+        <div>{JSON.stringify(home)}</div>
+        <button type="logout" onClick={logout}>Log Out</button>
         </div>
-    </div>);
+         :
+         <div>
+         Home page - No user logged in
+         <div>{JSON.stringify(home)}</div>
+         <button type="login" onClick={() => setNav('/login')}>Log In</button>
+         </div>
+    }
+    </div>
+    )
         
 }
 

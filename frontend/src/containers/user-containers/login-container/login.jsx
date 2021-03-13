@@ -1,11 +1,14 @@
 import LoginForm from '../../../components/user-components/login-component/loginForm';
-import {useState} from 'react';
+import { useContext} from 'react';
+import { UserContext } from '../../../UserContext';
 import axios from 'axios';
 import { Redirect } from 'react-router';
 
 const Login = () => {
 
-    const [loggedIn, setLoggedIn] = useState(false);
+    const {user, setUser} = useContext(UserContext);
+
+   // const [loggedIn, setLoggedIn] = useState(false);
 
     async function submitForm(props) {
         try {
@@ -19,14 +22,14 @@ const Login = () => {
                 }
             });
             if (data.data !== 'No user exists'){
-                setLoggedIn(true);
+                setUser("user is stored in context");
             }
         } catch (err) {
             console.log("Failing to call login api" + err);
         }
     }
 
-    if (loggedIn){
+    if (user){
         return <Redirect push to = {{
             pathname: '/',
             state: {data: "test"}
