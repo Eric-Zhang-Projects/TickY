@@ -4,6 +4,7 @@ import { UserContext } from './UserContext';
 import Home from './containers/home-containers/home';
 import Login from './containers/user-containers/login-container/login.jsx';
 import Register from './containers/user-containers/register-container/register.jsx';
+import Event from './containers/event-containers/event.jsx';
 
 import TestPage from './testPage.jsx';
 
@@ -22,6 +23,7 @@ function App() {
           <Route exact path = '/' component = {Home}/>
           <Route path = '/login' component = {Login}/>
           <Route path = '/register' component = {Register}/>
+          <Route path = '/event' component = {Event}/>
           <Route path = '/testpage' component = {TestPage}/>
           </UserContext.Provider>
         </Switch>

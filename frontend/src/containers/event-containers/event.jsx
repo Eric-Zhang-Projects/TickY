@@ -4,7 +4,7 @@ import { UserContext } from '../../UserContext.js';
 import axios from 'axios';
 import { Redirect } from 'react-router';
 
-const Home = () => {
+const Event = () => {
 
     const {user, setUser} = useContext(UserContext);
 
@@ -12,26 +12,25 @@ const Home = () => {
 
     //const [auth, setAuth] = useState(false);
 
-    const [home, setHome] = useState([]);
+    const [response, setResponse] = useState([]);
 
     useEffect(() => {
         console.log("current user: " + user);
-        async function getHomeEvents(){
-            const url = '/api/';
+        async function getAllEvents(){
+            const url = '/api/events';
             let response = await axios({
                 method: 'get',
                 url: url,
             });
-            setHome(response.data);
+            setResponse(response.data);
             //setUser(response.data)
             console.log(response);
         };
-        getHomeEvents();
-        console.log(home);
+        getAllEvents();
+        console.log(response);
     }, [])
 
    // const [event, useEvent] = useState([]);
-
 
     async function logout (){
         try {
@@ -44,6 +43,7 @@ const Home = () => {
             console.log(response);
             if (response.data === 'logged out'){
                 setUser(null);
+                setNav('/');
             }
         } catch (err) {
             console.log("Failing to call login api" + err);
@@ -52,15 +52,15 @@ const Home = () => {
         
     }
 
-
+//     function redir (path) {
+//    return <Redirect push to = {{
+//             pathname: path,
+//             state: {data: "test"}
+//         }} />
+//     }
     if (nav === '/login'){
     return <Redirect push to = {{
             pathname: '/login',
-            state: {data: "test"}
-        }} />
-    } else if (nav === '/event'){
-        return <Redirect push to = {{
-            pathname: '/event',
             state: {data: "test"}
         }} />
     }
@@ -69,15 +69,14 @@ const Home = () => {
     <div>
     {user ? 
         <div>
-        Home page - current user: {user}
-        <div>{JSON.stringify(home)}</div>
-        <button type="event" onClick={() => setNav('/event')}>View all events</button>
+        Event page - current user: {user}
+        <div>{JSON.stringify(response)}</div>
         <button type="logout" onClick={logout}>Log Out</button>
         </div>
          :
          <div>
-         Home page - No user logged in
-         <div>{JSON.stringify(home)}</div>
+         Event page - No user logged in
+         <div>{JSON.stringify(response)}</div>
          <button type="login" onClick={() => setNav('/login')}>Log In</button>
          </div>
     }
@@ -86,4 +85,4 @@ const Home = () => {
         
 }
 
-export default Home;
+export default Event;

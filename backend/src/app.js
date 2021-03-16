@@ -20,9 +20,6 @@ app.use(cors());
 
 app.use(flash());
 
-app.use(passport.initialize());
-app.use(passport.session());
-
 const RedisStore = connectRedis(session);
 const redisClient = redis.createClient({
   port: 6379,
@@ -40,10 +37,12 @@ app.use(session({
   }
 }));
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use('/api/', routes);
 app.use('/admin/api/', adminRoutes);
 //https://www.youtube.com/watch?v=-RCnNyD0L-s&ab_channel=WebDevSimplified
-//uuid
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)

@@ -8,7 +8,9 @@ Home Page
 */
 const soonest = async (req, res) => {
   try {
-    //console.log("Current user: " + req.session.passport.user + " auth " + req.isAuthenticated());
+    if (req.session.passport !== undefined){
+    console.log("Current user: " + req.session.passport.user + " auth " + req.isAuthenticated());
+    }
     let events = await homeDAO.soonestEvents();
     var response = [];
     events.forEach(row => {
