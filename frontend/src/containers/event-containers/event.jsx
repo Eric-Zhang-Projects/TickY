@@ -8,7 +8,7 @@ const Event = () => {
 
     const {user, setUser} = useContext(UserContext);
 
-    const [nav, setNav ] = useState('/');
+    const [nav, setNav ] = useState('');
 
     //const [auth, setAuth] = useState(false);
 
@@ -22,6 +22,12 @@ const Event = () => {
                 method: 'get',
                 url: url,
             });
+            if (response.data.user !== undefined){
+                setUser(null);
+            } else {
+                setUser('User defined in context')
+            }
+            console.log(user);
             setResponse(response.data);
             //setUser(response.data)
             console.log(response);
@@ -63,6 +69,11 @@ const Event = () => {
             pathname: '/login',
             state: {data: "test"}
         }} />
+    } else if (nav=== '/'){
+        return <Redirect push to = {{
+            pathname: '/',
+            state: {data: "test"}
+        }} />
     }
 
     return (
@@ -77,7 +88,7 @@ const Event = () => {
          <div>
          Event page - No user logged in
          <div>{JSON.stringify(response)}</div>
-         <button type="login" onClick={() => setNav('/login')}>Log In</button>
+         <button type="login" onClick={() => setNav('/')}>Log In</button>
          </div>
     }
     </div>

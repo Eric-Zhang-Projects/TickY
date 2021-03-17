@@ -29,7 +29,7 @@ const placeBid = async (req, res) => {
         const bid = {
             id: uuid.v4(),
             auction_id: req.params.id,
-            bidder_id: req.body.bidder_id,
+            bidder_id: req.session.passport.user,
             offer: req.body.offer,
             date: 'now()',
             is_active: true

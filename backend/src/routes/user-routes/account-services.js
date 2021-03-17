@@ -44,7 +44,7 @@ const sell = async (req, res) => {
         ticket_quantity: req.body.ticket_quantity
     }
     let relation = {
-        user_id: req.body.user_id,
+        user_id: req.session.passport.user,
         ticket_id: ticketId,
         event_id: req.body.event_id,
         auction_id: auctionId
@@ -68,9 +68,9 @@ const onboard = async(req, res) => {
     console.log("Register new Seller");
     try {
         let seller = {
-            id: req.body.id,
+            id: req.session.passport.user,
             name: req.body.name,
-            customer_id: req.body.customer_id
+            customer_id: req.session.passport.customer_id
         }
         const onboard = await dao.onboardSeller(seller);
         if (onboard !== 0 && onboard.name === undefined){

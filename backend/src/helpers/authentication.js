@@ -5,8 +5,7 @@ function checkAuthenticated(req, res, next) {
         return next();
     } else {
         console.log("Used is NOT logged in, redirecting");
-
-        return res.redirect('/login');
+        return res.send({user: false});
     }
 }
 
