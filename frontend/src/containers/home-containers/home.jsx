@@ -3,6 +3,7 @@ import {useState, useEffect, useContext} from 'react';
 import { UserContext } from '../../UserContext.js';
 import axios from 'axios';
 import { Redirect } from 'react-router';
+import Navbar from '../../components/navbar/navbar';
 
 const Home = () => {
 
@@ -23,6 +24,7 @@ const Home = () => {
                 url: url,
             });
             setHome(response.data);
+            response.data.user===undefined ? setUser('User defined in context') : setUser(null);
             //setUser(response.data)
             console.log(response);
         };
@@ -67,6 +69,7 @@ const Home = () => {
 
     return (
     <div>
+    <Navbar items={user}/>
     {user ? 
         <div>
         Home page - current user: {user}

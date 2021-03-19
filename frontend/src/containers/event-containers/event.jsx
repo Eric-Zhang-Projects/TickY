@@ -22,11 +22,7 @@ const Event = () => {
                 method: 'get',
                 url: url,
             });
-            if (response.data.user !== undefined){
-                setUser(null);
-            } else {
-                setUser('User defined in context')
-            }
+            response.data.user===undefined ? setUser('User defined in context') : setUser(null);
             console.log(user);
             setResponse(response.data);
             //setUser(response.data)
