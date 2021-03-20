@@ -2,28 +2,44 @@ import { NotLoggedInItems, LoggedInItems } from './navbarItems';
 import { useContext } from 'react';
 import { UserContext } from '../../UserContext.js';
 import Logout from '../../containers/user-containers/logout.jsx';
+import './navbar-styles.css';
 
-const Navbar = (props) => {
+const Navbar = () => {
 
     const {user, setUser} = useContext(UserContext);
 
+    function handleLogout() {
+        setUser(null);
+        Logout();
+    }
+
     return(
-    <div>
+    <div className="Navbar">
+    <div className = "Logo">
+        <a className = "Link" href = '/'>Ticky</a>
+    </div>
+    <div className = "SearchBarDiv">
+            <input type="text" className = "SearchBar" name="search" placeholder="Search for an Event or Artist"/>
+    </div>
+    <div className = "NavItemsDiv">
+        <div className = "NavItems">
         {(user ? LoggedInItems : NotLoggedInItems).map((item, index) => {
             return (
-                <li key = {index}>
-                <a href = {item.link}>{item.title}</a>
+                <li className = "Item" key = {index}>
+                <a className = "Link" href = {item.link}>{item.title}</a>
                 </li>
                 
             )
         })}
         {(user ? 
-                <li>
-                    <button onClick={()=>Logout()}>Log out</button>
+                <li className = "Item">
+                    <button onClick={()=>handleLogout()}>Log out</button>
                 </li>
-            : <li></li>
+            : <></>
         )}
         </div>
+    </div>
+    </div>
 
     )
 }

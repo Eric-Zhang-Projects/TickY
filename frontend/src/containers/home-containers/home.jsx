@@ -69,7 +69,7 @@ const Home = () => {
 
     return (
     <div>
-    <Navbar items={user}/>
+    <Navbar/>
     {user ? 
         <div>
         Home page - current user: {user}

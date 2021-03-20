@@ -1,0 +1,52 @@
+.Navbar {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    width: 100%;
+    height: 10vh;
+}
+
+.Logo{
+    /* float:left; */
+    display:flex;
+    padding-left: 3%;
+    align-items: center;
+    height: 100%;
+    width: 15%;
+}
+
+.SearchBarDiv{
+    display:flex;
+    list-style: none;
+    align-items: center;
+    width: 45%;
+    height: 100%;
+}
+
+.SearchBar{
+    width: 90%;
+}
+
+.NavItemsDiv{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.NavItems{
+    width:60%;
+    display: flex;
+    margin-left: auto;
+    margin-right: 5%;
+}
+
+.Item{
+    list-style: none;
+    margin-left: auto;
+}
+
+.Link{
+    text-decoration: none;
+}
