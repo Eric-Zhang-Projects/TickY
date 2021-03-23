@@ -16,7 +16,7 @@ const soonest = async (req, res) => {
     events.forEach(row => {
       if (response.find(event => event.event_id === row.event_id) === undefined){
         var lineup = [];
-        lineup.push(row.artist_name);
+        lineup.push({id: row.artist_id, name: row.artist_name});
         var event = {
           event_id: row.event_id,
           event_name: row.event_name,
@@ -25,11 +25,12 @@ const soonest = async (req, res) => {
           start_time: row.start_time,
           end_time: row.end_time,
           venue: row.venue_name,
+          venue_location: row.venue_location,
           lineup: lineup
         };
         response.push(event);
       } else {
-        response.find(event => event.event_id === row.event_id).lineup.push(row.artist_name);
+        response.find(event => event.event_id === row.event_id).lineup.push({id: row.artist_id, name: row.artist_name});
       }    
     })
 

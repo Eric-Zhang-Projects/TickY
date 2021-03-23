@@ -1,4 +1,4 @@
-import RegisterForm from '../../../components/user-components/register-component/registerForm';
+import RegisterForm from '../../components/user-components/register-component/registerForm';
 //import {useState} from 'react';
 import axios from 'axios';
 

@@ -1,6 +1,6 @@
-import LoginForm from '../../../components/user-components/login-component/loginForm';
+import LoginForm from '../../components/user-components/login-component/loginForm';
 import { useContext} from 'react';
-import { UserContext } from '../../../UserContext';
+import { UserContext } from '../../UserContext';
 import axios from 'axios';
 import { Redirect } from 'react-router';
 

@@ -7,8 +7,8 @@ async function soonestEvents() {
         'select * from event e order by date limit 9\n' +
         ') select\n' +
         'e.id event_id, e.name event_name, e.description, e.date, e.start_time, e.end_time,\n' +
-        'v.name venue_name,\n' +
-        'a.name artist_name\n' +
+        'v.name venue_name, v.location venue_location,\n' +
+        'a.name artist_name, a.id artist_id\n' +
         'from e\n' +
         'left join event_artist ea on e.id = ea.event_id\n' +
         'left join artist a on a.id = ea.artist_id\n' +

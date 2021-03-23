@@ -1,9 +1,8 @@
-//import Event from '../../components/home-components/Event';
+import EventList from '../../components/home-components/EventList';
 import {useState, useEffect, useContext} from 'react';
 import { UserContext } from '../../UserContext.js';
 import axios from 'axios';
 import { Redirect } from 'react-router';
-import Navbar from '../../components/navbar/navbar';
 
 const Home = () => {
 
@@ -69,8 +68,11 @@ const Home = () => {
 
     return (
     <div>
-    <Navbar/>
-    {user ? 
+        <div>
+        Home page - current user: {user}
+        </div>
+        <EventList data={home}/>
+    {/* {user ? 
         <div>
         Home page - current user: {user}
         <div>{JSON.stringify(home)}</div>
@@ -83,7 +85,7 @@ const Home = () => {
          <div>{JSON.stringify(home)}</div>
          <button type="login" onClick={() => setNav('/login')}>Log In</button>
          </div>
-    }
+    } */}
     </div>
     )
         

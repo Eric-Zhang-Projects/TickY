@@ -3,7 +3,6 @@ import {useState, useEffect, useContext} from 'react';
 import { UserContext } from '../../UserContext.js';
 import axios from 'axios';
 import { Redirect } from 'react-router';
-import Navbar from '../../components/navbar/navbar';
 
 const Event = () => {
 
@@ -75,7 +74,6 @@ const Event = () => {
 
     return (
     <div>
-    <Navbar/>
     {user ? 
         <div>
         Event page - current user: {user}
