@@ -2,10 +2,11 @@ const artistDAO = require('./artistsDAO');
 
 const all = async (req, res) => {
     let response = await artistDAO.getAllArtists();
-    res.json(response);
+    res.json({user: res.locals.user, response: response});
 };
 
 const byId = async (req, res) => {
+    console.log("Getting artist by Id");
     try {
         let artistDetailsById = await artistDAO.getArtistDetailsById(req.params.id);
         var artist = {};
@@ -25,7 +26,7 @@ const byId = async (req, res) => {
             }
         })
         var response = {artist: artist, events: events};
-        res.json(response);
+        res.json({user: res.locals.user, response: response});
     } catch (err){
         console.log(err);
     }

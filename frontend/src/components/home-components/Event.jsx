@@ -7,9 +7,9 @@ const Event = (props) => {
         <div className = "EventImage">IMG</div>
         <div className = "EventInfo">
         <div>Event name: {props.data.event_name}</div>
-        <div className="Lineup">Line up: {props.data.lineup.map((artist) => {
+        <div className="Lineup">Line up: {props.data.lineup.map((artist, index) => {
             return (
-            <React.Fragment>
+            <React.Fragment key = {index}>
             {artist.name ?
                 <a href = {'/artist/' + artist.id} className="ArtistBlock">{artist.name}</a>
                 : 

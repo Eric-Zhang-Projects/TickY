@@ -9,6 +9,18 @@ function checkAuthenticated(req, res, next) {
     }
 }
 
+function allAllowed(req, res, next) {
+    if (req.isAuthenticated()){
+        console.log("Endpoint available to all has user logged in");
+        res.locals.user = true;
+        return next();
+    } else {
+        console.log("Endpoint available to all has no user");
+        res.locals.user = null;
+        return next();
+    }
+}
+
 function checkNotAuthenticated(req, res, next) {
     if (req.isAuthenticated()){
         console.log("Used is NOT logged in, redirecting");
@@ -20,5 +32,6 @@ function checkNotAuthenticated(req, res, next) {
 
 module.exports = {
     checkAuthenticated,
+    allAllowed,
     checkNotAuthenticated
 }

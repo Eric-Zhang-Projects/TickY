@@ -2,13 +2,13 @@ import EventList from '../../components/home-components/EventList';
 import {useState, useEffect, useContext} from 'react';
 import { UserContext } from '../../UserContext.js';
 import axios from 'axios';
-import { Redirect } from 'react-router';
+// import { Redirect } from 'react-router';
 
 const Home = () => {
 
     const {user, setUser} = useContext(UserContext);
 
-    const [nav, setNav ] = useState('/');
+    // const [nav, setNav ] = useState('/');
 
     //const [auth, setAuth] = useState(false);
 
@@ -22,10 +22,8 @@ const Home = () => {
                 method: 'get',
                 url: url,
             });
-            setHome(response.data);
-            response.data.user===undefined ? setUser('User defined in context') : setUser(null);
-            //setUser(response.data)
-            console.log(response);
+            setHome(response.data.response);
+            setUser(response.data.user);
         };
         getHomeEvents();
         console.log(home);
@@ -34,37 +32,37 @@ const Home = () => {
    // const [event, useEvent] = useState([]);
 
 
-    async function logout (){
-        try {
-            const url = '/api/logout';
-            console.log(url);
-            const response = await axios({
-                method: 'delete',
-                url: url,
-            });
-            console.log(response);
-            if (response.data === 'logged out'){
-                setUser(null);
-            }
-        } catch (err) {
-            console.log("Failing to call login api" + err);
-            setUser("User failed to log out, logging out anyway");
-        }
+    // async function logout (){
+    //     try {
+    //         const url = '/api/logout';
+    //         console.log(url);
+    //         const response = await axios({
+    //             method: 'delete',
+    //             url: url,
+    //         });
+    //         console.log(response);
+    //         if (response.data === 'logged out'){
+    //             setUser(null);
+    //         }
+    //     } catch (err) {
+    //         console.log("Failing to call login api" + err);
+    //         setUser("User failed to log out, logging out anyway");
+    //     }
         
-    }
+    // }
 
 
-    if (nav === '/login'){
-    return <Redirect push to = {{
-            pathname: '/login',
-            state: {data: "test"}
-        }} />
-    } else if (nav === '/event'){
-        return <Redirect push to = {{
-            pathname: '/event',
-            state: {data: "test"}
-        }} />
-    }
+    // if (nav === '/login'){
+    // return <Redirect push to = {{
+    //         pathname: '/login',
+    //         state: {data: "test"}
+    //     }} />
+    // } else if (nav === '/event'){
+    //     return <Redirect push to = {{
+    //         pathname: '/event',
+    //         state: {data: "test"}
+    //     }} />
+    // }
 
     return (
     <div>

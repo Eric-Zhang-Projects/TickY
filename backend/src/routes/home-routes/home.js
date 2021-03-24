@@ -34,7 +34,7 @@ const soonest = async (req, res) => {
       }    
     })
 
-    res.json(response);
+    res.json({user: res.locals.user, response: response});
   } catch (err){
     console.log(err);
   }

@@ -1,0 +1,77 @@
+.ArtistBlockParent{
+    /* justify-content: center;
+    align-items: center; */
+    margin-left: 10%;
+    margin-right: 10%;
+
+}
+
+.ArtistImg{
+    width: 100%;
+    border-radius: 5px;
+    border-style: solid;
+    border-color:grey;
+    border-width: 1.5px;
+    height: 25vh;
+    margin-top: 2%;
+    text-align: center;
+}
+
+.ArtistName{
+    font-size: 100px;
+}
+
+.EventsHeader {
+    font-size: 50px;
+    margin-bottom: 5%;
+}
+
+.EventsListParent{
+    list-style: none;
+    width: 100%;
+    height: 50vh;
+    justify-content: center;
+    display: flex;
+}
+.EventsList{
+    height: fit-content;
+    width: 75%;
+    display: flexbox;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ArtistEventListItem{
+    /* list-style: none;
+    border-radius: 5px;
+    border-style: solid;
+    border-color:#AB7AAB;
+    height: 95%;
+    width: 100%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    justify-content: center;
+    display: flex;
+    text-align: center;
+    margin-bottom: 3%;
+    font-size: 20px; */
+}
+
+.ArtistEventButton{
+    width: 100%;
+    height: 100%;
+    background-color: #AB7AAB;
+    border-style: solid;
+    border-color: grey;
+    color: white;
+    border-radius: 5px;
+    margin-bottom: 3%;
+    font-size: 20px;
+}
+
+.ArtistEventButton:hover{
+    background-color: white;
+    color: #AB7AAB;
+    border-style: solid;
+    border-color: grey;
+}

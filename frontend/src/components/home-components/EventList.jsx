@@ -6,7 +6,7 @@ const EventList = (props) => {
     <div className = "Parent">
         <div className = "EventList"> {props.data.map((item) => {
             return (
-                <li className="ListItem">
+                <li className="ListItem" key = {item.event_id}>
                     <Event data={item}/>
                 </li>
             )
