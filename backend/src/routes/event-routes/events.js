@@ -21,7 +21,8 @@ const byId = async (req, res) => {
     auctionData.forEach(auction => {
       response.auctions.push({...auction});
     })
-    res.json(response);
+    if (response.auctions.length === 0) response.auctions = null;
+    res.json({user: res.locals.user, response: response});
   } catch (err){
     console.log(err);
   }

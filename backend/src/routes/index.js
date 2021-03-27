@@ -26,7 +26,7 @@ User routes
 [x] POST /register
 [x] POST /sell
 [x] POST /sell/new (adds card info + seller name + rating), add # of transactions
-GET /logout
+[x] GET /logout
 GET /account
     - Seller:
         a. tickets + auctions

@@ -4,7 +4,7 @@ import { UserContext } from '../../UserContext.js';
 import axios from 'axios';
 // import { Redirect } from 'react-router';
 
-const Home = () => {
+const HomePage = () => {
 
     const {user, setUser} = useContext(UserContext);
 
@@ -89,4 +89,4 @@ const Home = () => {
         
 }
 
-export default Home;
+export default HomePage;

@@ -1,4 +1,4 @@
-import LoginForm from '../../components/user-components/login-component/loginForm';
+import LoginForm from '../../components/user-components/loginForm';
 import { useContext} from 'react';
 import { UserContext } from '../../UserContext';
 import axios from 'axios';

@@ -35,7 +35,7 @@ const ArtistPage = () => {
             {artist ? 
             <ArtistBlock data = {artist}/>
                 : 
-                <div>none</div>
+                null
             }
             </div>
         </div>

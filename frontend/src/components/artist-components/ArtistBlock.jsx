@@ -1,6 +1,7 @@
 import React from "react";
 import ArtistEventList from './ArtistEventList';
 import './artist-styles.css';
+import { Link } from 'react-router-dom';
 
 const Artist = (props) => {
 
@@ -14,7 +15,9 @@ const Artist = (props) => {
             {props.data.events.map((item, index)=> {
                 return (
                     <li key = {index} className = "ArtistEventListItem">
+                        <Link to = {"/event/" + item.id} className = "ArtistEventLink">
                         <ArtistEventList data={item}/>
+                        </Link>
                     </li>
                 )
             })}

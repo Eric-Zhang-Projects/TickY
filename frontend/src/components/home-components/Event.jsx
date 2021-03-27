@@ -1,5 +1,6 @@
 import React from 'react';
 import './event-styles.css';
+import { Link } from 'react-router-dom';
 
 const Event = (props) => {
     return(
@@ -11,7 +12,9 @@ const Event = (props) => {
             return (
             <React.Fragment key = {index}>
             {artist.name ?
+                <Link to = {"/artist/" + artist.id} className = "ArtistBlock">
                 <a href = {'/artist/' + artist.id} className="ArtistBlock">{artist.name}</a>
+                </Link>
                 : 
                 <a href = '/' className="ArtistBlock">Not Available</a>
             }
