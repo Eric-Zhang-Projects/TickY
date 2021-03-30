@@ -29,7 +29,7 @@ const EventPage = () => {
 
     return (
     <div>
-        <div>{JSON.stringify(response)}</div>
+        {/* <div>{JSON.stringify(response)}</div> */}
         {response ?
             (<EventAuction data={response}/>)
             :

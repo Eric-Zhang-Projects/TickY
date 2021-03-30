@@ -1,0 +1,81 @@
+.EventAuctionParent{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.EventName{
+    font-size: 100px;
+}
+
+.AuctionsHeader{
+    font-size: 50px;
+    margin-bottom: 5%;
+}
+
+.EventDetails{
+
+}
+
+.AuctionsListParent{
+    display: flex;
+    width: 100%;
+    height: 50vh;
+}
+
+.AuctionsList{
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+    /* height: 100%; */
+    text-align: center;
+}
+.AuctionButton{
+    width:100%;
+    margin-bottom: 3%;
+    background-color: white;
+    border-style: solid;
+    border-color: grey;
+    color: black;
+    border-radius: 5px;
+    
+}
+
+/* .AuctionButton:hover{
+    background-color: white;
+    color: #AB7AAB;
+    border-style: solid;
+    border-color: grey;
+} */
+
+.QuantityDate{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+}
+
+.Quantity{
+    margin-right: 3%;
+}
+
+.Date{
+    margin-left: 3%;
+}
+
+.AskPriceParent{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    
+}
+
+.AskPrice{
+    width: 50%;
+    font-size: 25px;
+    background-color: #AB7AAB;
+    border-style: solid;
+    /* border-color: grey; */
+    color: white;
+    border-radius: 5px;
+
+}

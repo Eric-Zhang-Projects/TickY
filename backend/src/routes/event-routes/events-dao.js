@@ -45,10 +45,12 @@ async function getEventArtistsById(id) {
 async function getEventAcutionsById(id) {
   const query = 
   'select\n' +
-  'a.id auction_id, a.expiration_date, a.ask_price, a.ticket_quantity\n' +
+  'a.id auction_id, a.expiration_date, a.ask_price, a.ticket_quantity,\n' +
+  'u.name seller_name, u.seller_rating\n' +
   'from auction a\n' +
   'inner join user_ticket_event_auction r on a.id = r.auction_id\n' +
-  'where r.event_id = $1'
+  'inner join users u on u.id = r.user_id\n' +
+  'where r.event_id = $1 order by a.ask_price'
   const values = [id];
   try {
     const event = await pool.query(query, values);

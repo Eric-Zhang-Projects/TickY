@@ -1,6 +1,7 @@
 import React from "react";
 import AuctionList from "./AuctionList";
 import { Link } from 'react-router-dom';
+import './event-auction-styles.css';
 
 const EventAuction = (props) => {
 
@@ -18,6 +19,7 @@ const EventAuction = (props) => {
             {props.data.date} | {props.data.venue_name}, {props.data.venue_location}</div>
         </div>
         <div>Event Line Up maybe make into component from Event.jsx from home</div>
+        <div className = "AuctionsHeader">Auctions</div>
         {props.data.auctions ? 
         (<AuctionList data={props.data.auctions}/>)
         :
