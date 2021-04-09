@@ -37,6 +37,9 @@ GET /account
 POST /updateAccount
 GET /forgotpassword
 
+BID Routes
+/bids/{id}
+
 Home routes
 [x] GET / (return list of soon events)
 [] GET /search?query= (artist or event name and show results)
@@ -47,12 +50,12 @@ Event routes
 [x] GET /events (may not have afrontend)
 [x] GET /events/{id} (shows event details + auctions)
     -> /artists/{id}
-    -> /auctions/{id}
+---    -> /auctions/{id}
 
 artist routes
 [x]GET /artists
 [x]GET /artists/{id} (shows events)
-    -> /events/{id}
+[x]    -> /events/{id}
 
 auction routes
 [x]GET /auctions shows all auctions (ordered by recent)
@@ -60,6 +63,7 @@ auction routes
     -> /events/{id} (?)
     -> /bid
 POST /auctions/{id}/bid places bid
+    -> /bids/{id}
 
 */
 

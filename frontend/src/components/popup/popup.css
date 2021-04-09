@@ -1,0 +1,62 @@
+.modal {
+    font-size: 20px;
+    /* background-color: rgba(0,0,0,0.4); */
+    background-color: white;
+    border-radius: 5px;
+    border: solid;
+}
+  .modal > .header {
+    width: 100%;
+    border-bottom: 1px solid gray;
+    font-size: 18px;
+    text-align: center;
+    padding: 5px;
+  }
+  .modal > .content {
+    width: 100%;
+    padding: 10px 5px;
+  }
+  .modal > .actions {
+    width: 100%;
+    padding: 10px 5px;
+    margin: auto;
+    text-align: center;
+  }
+  .modal > .close {
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    padding: 2px 5px;
+    line-height: 20px;
+    right: -10px;
+    top: -10px;
+    font-size: 24px;
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid #cfcece;
+  }
+
+  .Row{
+    display: flex;
+    margin-bottom: 3%;
+  }
+
+.Column{
+  width:50%;
+  text-align: center;
+}
+
+.SingleColumn{
+  width:100%;
+  text-align: center;
+}
+
+.InputBidDollars{
+  width: 20%;
+  font-size:18px;
+}
+
+.InputBidCents{
+  width: 10%;
+  font-size:18px;
+}

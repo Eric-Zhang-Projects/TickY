@@ -2,6 +2,7 @@ import React from "react";
 import AuctionList from "./AuctionList";
 import { Link } from 'react-router-dom';
 import './event-auction-styles.css';
+import BidPopUp from "../popup/BidPopUp";
 
 const EventAuction = (props) => {
 
@@ -21,7 +22,18 @@ const EventAuction = (props) => {
         <div>Event Line Up maybe make into component from Event.jsx from home</div>
         <div className = "AuctionsHeader">Auctions</div>
         {props.data.auctions ? 
-        (<AuctionList data={props.data.auctions}/>)
+        (
+                <div className = "AuctionsListParent">
+                <div className = "AuctionsList">
+                {props.data.auctions.map((item, index) => {
+                    return (
+                    <React.Fragment>
+        {/* <AuctionList data={item} handleBid={props.handleBid} key = {index}/> */}
+        <BidPopUp data={item} handleBid={props.handleBid} key={index}/>
+        </React.Fragment>
+                    )})}
+        </div></div>
+        )
         :
         <div>No Auctions</div>
         }

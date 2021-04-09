@@ -27,11 +27,23 @@ const EventPage = () => {
         console.log(response.data);
     }, [])
 
+    async function placeBid(auctionId, bidPrice){
+        console.log("Placing bid " + bidPrice);
+        const url = '/api/auctions/' + auctionId + '/bid';
+        await axios({
+            method: 'post',
+            url: url,
+            data: {
+                offer: bidPrice
+            }
+        });
+    }
+
     return (
     <div>
         {/* <div>{JSON.stringify(response)}</div> */}
         {response ?
-            (<EventAuction data={response}/>)
+            (<EventAuction data={response} handleBid = {placeBid}/>)
             :
             null
         }
