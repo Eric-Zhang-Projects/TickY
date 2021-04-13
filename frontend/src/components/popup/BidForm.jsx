@@ -1,6 +1,7 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { Link } from 'react-router-dom';
 
 const BidForm = (props) => {
     console.log(props);
@@ -27,6 +28,7 @@ const BidForm = (props) => {
           className = "InputBidDollars"
             id="dollars"
             type="text"
+            placeholder = {props.data.ask_price.substring(1).split(".")[0]}
             {...formik.getFieldProps('dollars')}
             // onChange={formik.handleChange}
             // onBlur={formik.handleBlur}
@@ -40,12 +42,12 @@ const BidForm = (props) => {
                 className = "InputBidDollars"
                 id="cents"
                 type="text"
+                placeholder = {props.data.ask_price.substring(1).split(".")[1]}
                 {...formik.getFieldProps('cents')}
             />
             {formik.touched.cents && formik.errors.cents ? (
                 <div>{formik.errors.cents}</div>
             ) : null}
-    
           <button type="submit">Submit</button>
         </form>
       );

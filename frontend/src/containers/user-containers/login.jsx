@@ -4,7 +4,7 @@ import { UserContext } from '../../UserContext';
 import axios from 'axios';
 import { Redirect } from 'react-router';
 
-const Login = () => {
+const Login = (props) => {
 
     const {user, setUser} = useContext(UserContext);
 
@@ -30,8 +30,9 @@ const Login = () => {
     }
 
     if (user){
-        return <Redirect push to = {{
-            pathname: '/',
+        console.log("redirect: " + props.location.state.redirect);
+        return <Redirect to = {{
+            pathname: props.location.state.redirect ? props.location.state.redirect : '/',
             state: {data: "test"}
         }} />
     }

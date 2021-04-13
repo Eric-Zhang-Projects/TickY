@@ -39,7 +39,8 @@ const placeBid = async (req, res) => {
         if (placeBid === undefined){
             res.json("Failed to place bid");
         } else {
-            res.json("Successfully placed bid");
+            console.log("Placed bid");
+            res.json({user: res.locals.user, response: "Successfully placed bid"});
         }
     } catch (err) {
         console.log(err + "\nFailed to place bid");

@@ -27,7 +27,7 @@ const EventAuction = (props) => {
                 <div className = "AuctionsList">
                 {props.data.auctions.map((item, index) => {
                     return (
-                    <React.Fragment>
+                    <React.Fragment key = {index}>
         {/* <AuctionList data={item} handleBid={props.handleBid} key = {index}/> */}
         <BidPopUp data={item} handleBid={props.handleBid} key={index}/>
         </React.Fragment>

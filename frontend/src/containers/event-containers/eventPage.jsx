@@ -2,7 +2,7 @@ import EventAuction from '../../components/event-components/EventAuction';
 import {useState, useEffect, useContext} from 'react';
 import { UserContext } from '../../UserContext.js';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 
 const EventPage = () => {
 
@@ -11,6 +11,8 @@ const EventPage = () => {
     const {user, setUser} = useContext(UserContext);
 
     const [response, setResponse] = useState([]);
+
+    const [redirect, setRedirect] = useState(false);
 
     useEffect(() => {
         console.log("event id: " + id);
@@ -22,6 +24,7 @@ const EventPage = () => {
             });
             setResponse(response.data.response);
             setUser(response.data.user);
+            setRedirect(false);
         };
         getAllEvents();
         console.log(response.data);
@@ -30,24 +33,39 @@ const EventPage = () => {
     async function placeBid(auctionId, bidPrice){
         console.log("Placing bid " + bidPrice);
         const url = '/api/auctions/' + auctionId + '/bid';
-        await axios({
+        let response = await axios({
             method: 'post',
             url: url,
             data: {
                 offer: bidPrice
             }
         });
+        setUser(response.data.user);
+        if (!response.data.user){
+            console.log("No user found, cannot place bid");
+            setRedirect(true);
+        }
+        //setUser(response.data.user);
     }
 
     return (
+        <div>
+            {redirect ?
+            (<Redirect push to = {{
+                pathname: '/login',
+                 state: {redirect: "/event/" + id}
+            }} /> )
+            :            
     <div>
-        {/* <div>{JSON.stringify(response)}</div> */}
         {response ?
             (<EventAuction data={response} handleBid = {placeBid}/>)
             :
             null
         }
     </div>
+    }
+    </div>
+
     )
         
 }
