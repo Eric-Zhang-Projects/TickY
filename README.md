@@ -23,5 +23,6 @@ Ticket Bidding Website
   <li>Future Enhancements:</li>
     <ul>
       <li>Integration with Stripe Payment API</li>
+      <li>Ticket uploads</li>
     <ul>
 </ol>
